@@ -10,8 +10,8 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
+import { star, heart, globe } from 'ionicons/icons';
+import PersonalTab from './pages/PersonalGoals';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
@@ -42,7 +42,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/tab1">
-            <Tab1 />
+            <PersonalTab />
           </Route>
           <Route exact path="/tab2">
             <Tab2 />
@@ -56,16 +56,16 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonIcon aria-hidden="true" icon={star} />
+            <IonLabel>My Goals</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonIcon aria-hidden="true" icon={heart} />
+            <IonLabel>Friends' Leaderboard</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonIcon aria-hidden="true" icon={globe} />
+            <IonLabel>Global Leaderboard</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
