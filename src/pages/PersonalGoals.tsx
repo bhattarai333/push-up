@@ -10,7 +10,7 @@ const PersonalTab: React.FC = () => {
   const [currentValue, setCurrentValue] = useState<number>(0); // State to hold the current value
 
   const handleFormSubmit = (newValue: number) => {
-    setCurrentValue(prevValue => prevValue + newValue); // Add the submitted quantity to the current value
+    setCurrentValue(newValue+currentValue); // Update the current value in state
   };
   const currentDate = getFormattedDate()
   return (

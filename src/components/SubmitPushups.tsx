@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
-import { IonItem, IonInput, IonLabel, IonButton } from '@ionic/react';
+import React, { useRef } from 'react';
+import { IonInput, IonButton } from '@ionic/react';
 
 interface SubmitPushupsProps {
   onSubmit: (newValue: number) => void; // Callback to submit the value
 }
 
 const SubmitPushups: React.FC<SubmitPushupsProps> = ({ onSubmit }) => {
-  const [quantity, setQuantity] = useState<number>(0); // State to hold the input value
-
-  const handleInputChange = (event: CustomEvent) => {
-    const newValue = (event.target as HTMLInputElement).value;
-    const parsedValue = parseInt(newValue, 0);
-  
-    if (!isNaN(parsedValue)) {
-      setQuantity(parsedValue); // Update input value in state if it's a valid number
-    } else {
-      setQuantity(0); // Set quantity to 0 if the input value is not a valid number
-    }
-  };
+  const inputRef = useRef<HTMLIonInputElement>(null); // Create a ref for IonInput
 
   const handleSubmit = () => {
-    if (quantity !== 0) {
-      onSubmit(quantity); // Pass the input value to the parent component only if it's not zero
-      setQuantity(0); // Reset input value after submission
+    if (inputRef.current) {
+      const inputValue = inputRef.current.value; // Get value from the IonInput
+      const parsedValue = parseInt(inputValue || '0', 10); // Parse value to number
+      console.log(parsedValue); // Log the parsed value (use it or pass to onSubmit)
+      onSubmit(parsedValue)
     }
-      
   };
-  
 
   return (
     <div>
-      <IonItem>
-        <IonLabel>Quantity</IonLabel>
-        <input type="number" value={quantity} onChange={handleInputChange}></input>
-      </IonItem>
+      <IonInput
+        label="Quantity"
+        labelPlacement='stacked'
+        type="number"
+        ref={inputRef} // Assign ref to IonInput
+      ></IonInput>
       <IonButton className="ion-margin-top" onClick={handleSubmit} expand="block">
         Submit
       </IonButton>
