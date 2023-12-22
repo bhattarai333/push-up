@@ -19,7 +19,7 @@ const DialView: React.FC<DialProps> = ({ min, max, current }) => {
         value={current}
         needleColor="steelblue"
         textColor={textColor}
-        currentValueText={`Today's Push-ups: ${current}`} // Display current value as text
+        currentValueText={`Today's Push-Ups: ${current}`} // Display current value as text
         
       />
       

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { IonContent, IonNote, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import SubmitPushups from '../components/SubmitPushups';
@@ -5,8 +6,12 @@ import DialView from '../components/DialView';
 import './PersonalGoals.css';
 
 
-
 const PersonalTab: React.FC = () => {
+  const [currentValue, setCurrentValue] = useState<number>(0); // State to hold the current value
+
+  const handleFormSubmit = (newValue: number) => {
+    setCurrentValue(prevValue => prevValue + newValue); // Add the submitted quantity to the current value
+  };
   const currentDate = getFormattedDate()
   return (
     <IonPage>
@@ -23,8 +28,8 @@ const PersonalTab: React.FC = () => {
         </IonHeader>
 
         <IonTitle className="centered">{currentDate}</IonTitle>
-        <DialView min={0} max={100} current={10}></DialView>
-        <SubmitPushups></SubmitPushups>
+        <DialView min={0} max={100} current={currentValue}></DialView>
+        <SubmitPushups onSubmit={handleFormSubmit}></SubmitPushups>
         
       </IonContent>
     </IonPage>
